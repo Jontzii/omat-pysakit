@@ -1,0 +1,31 @@
+{
+    "name": "cra-node-boilerplate",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "prepare": "husky install",
+        "lint": "lint-staged",
+        "check-style": "prettier --check ."
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,json,css,scss,md,html,yml}": [
+            "prettier --write"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jontzii/cra-node-boilerplate.git"
+    },
+    "author": "Jontzii",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Jontzii/cra-node-boilerplate/issues"
+    },
+    "homepage": "https://github.com/Jontzii/cra-node-boilerplate#readme",
+    "devDependencies": {
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.3",
+        "prettier": "^2.5.1"
+    }
+}
