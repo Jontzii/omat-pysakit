@@ -1,6 +1,6 @@
 # Omat pysäkit
 
-[![Test](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml/badge.svg?branch=main)](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml)
+[![Test](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml)
 [![codecov](https://codecov.io/gh/Jontzii/omat-pysakit/branch/main/graph/badge.svg?token=MOLC69P5VL)](https://codecov.io/gh/Jontzii/omat-pysakit)
 
 ## Description
