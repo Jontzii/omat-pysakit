@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction } from 'express';
 import logger from './logger';
 
@@ -8,7 +9,7 @@ const errorHandler = () => {
         error: Error,
         req: Request,
         res: Response,
-        _next: NextFunction
+        next: NextFunction
     ) => {
         logger.error(error.message);
         internalServerError(req, res);
