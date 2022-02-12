@@ -29,7 +29,7 @@ export const fetchStops = () => {
  */
 export const sendResponse = () => {
     const middleware = async (req: Request, res: Response) => {
-        responses.Ok(req, res, res.locals.stops);
+        responses.ok(req, res, res.locals.stops);
     };
     return middleware;
 };

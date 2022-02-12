@@ -9,7 +9,7 @@ import { Request, Response } from 'express';
 /**
  * 200 Ok
  */
-export const Ok = (req: Request, res: Response, data: unknown) => {
+export const ok = (req: Request, res: Response, data: unknown) => {
     return res.status(200).json(data);
 };
 

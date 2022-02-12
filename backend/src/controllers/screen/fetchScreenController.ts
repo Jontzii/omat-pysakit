@@ -30,7 +30,7 @@ export const fetchScreenData = () => {
 
 export const sendData = () => {
     const middleware = async (req: Request, res: Response) => {
-        responses.Ok(req, res, res.locals.payload);
+        responses.ok(req, res, res.locals.payload);
     };
 
     return middleware;
