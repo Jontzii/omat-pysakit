@@ -15,7 +15,7 @@
         "build": "tsc --project tsconfig.production.json",
         "start": "ts-node -r tsconfig-paths/register src/app.ts",
         "nodemon": "nodemon -r tsconfig-paths/register -e js,ts,json src/app.ts",
-        "start-production": "node build/app.js"
+        "start-production": "node -r ts-node/register/transpile-only -r tsconfig-paths/register build/app.js"
     },
     "author": "",
     "dependencies": {
