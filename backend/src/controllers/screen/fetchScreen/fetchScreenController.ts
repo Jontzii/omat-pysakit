@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { getScreenWithUuid } from './ScreenUtils';
-import * as responses from '../../utils/responses';
+import { getScreenWithUuid } from '../ScreenUtils';
+import * as responses from '@utils/responses';
 
 export const fetchScreenData = () => {
     const middleware = async (

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import ScreenSettings from '../types/screenSettings';
+import ScreenSettings from '@definitions/screenSettings';
 
 export const settingsSchema = new Schema<ScreenSettings>({
     uuid: {

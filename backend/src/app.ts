@@ -43,5 +43,5 @@ app.use((req: Request, res: Response) => notFound(req, res));
 app.use(errorHandler());
 
 app.listen(port, () => {
-    Logger.info(`Omat-naytot API listening at port ${port}`);
+    Logger.info(`Omat naytot API listening on port ${port}`);
 });

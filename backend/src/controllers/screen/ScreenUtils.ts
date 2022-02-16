@@ -1,8 +1,8 @@
-import ScreenModel from '../../models/screenSettings';
-import ScreenSettings from '../../types/screenSettings';
+import ScreenModel from '@models/screenSettings';
+import ScreenSettings from '@definitions/screenSettings';
 
 /**
- *
+ * Save screen to database
  * @param payload
  * @returns
  */

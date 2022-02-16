@@ -2,8 +2,8 @@ import axios from 'axios';
 import { DateTime } from 'luxon';
 import _ from 'lodash';
 
-import stopObject from '../../types/stopObject';
-import logger from '../../utils/logger';
+import stopObject from '@definitions/stopObject';
+import logger from '@utils/logger';
 
 const { DIGITRANSIT_URL, DIGITRANSIT_AREA } = process.env;
 

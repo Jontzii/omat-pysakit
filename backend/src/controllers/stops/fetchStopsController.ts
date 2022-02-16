@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import * as responses from '../../utils/responses';
+import * as responses from '@utils/responses';
 import { getStops } from './fetchStopsUtils';
 
 /**

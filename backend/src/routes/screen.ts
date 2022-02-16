@@ -5,12 +5,12 @@ import {
     checkStops,
     saveData,
     sendResponse
-} from '../controllers/screen/saveScreenController';
+} from '@controllers/screen/saveScreen/saveScreenController';
 
 import {
     fetchScreenData,
     sendData
-} from '../controllers/screen/fetchScreenController';
+} from '@controllers/screen/fetchScreen/fetchScreenController';
 
 export const router = Router();
 
