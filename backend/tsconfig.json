@@ -15,5 +15,6 @@
             "@definitions/*": ["types/*"],
             "@utils/*": ["utils/*"]
         }
-    }
+    },
+    "include": ["./src"]
 }
