@@ -2,7 +2,10 @@ import winston from 'winston';
 
 const logger = winston.createLogger({
     level: 'info',
-    format: winston.format.json(),
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
     defaultMeta: { service: 'user-service' },
     transports: [
         //
@@ -10,7 +13,10 @@ const logger = winston.createLogger({
         // - Write all logs with importance level of `info` or less to `combined.log`
         //
         new winston.transports.File({ filename: 'error.log', level: 'error' }),
-        new winston.transports.File({ filename: 'combined.log' }),
+        new winston.transports.File({
+            filename: 'combined.log',
+            level: 'info'
+        }),
         new winston.transports.Console()
     ]
 });

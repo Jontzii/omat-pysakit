@@ -6,6 +6,15 @@
         "outDir": "./build",
         "esModuleInterop": true,
         "strict": true,
-        "resolveJsonModule": true
-    }
+        "resolveJsonModule": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@controllers/*": ["controllers/*"],
+            "@models/*": ["models/*"],
+            "@routes/*": ["routes/*"],
+            "@definitions/*": ["types/*"],
+            "@utils/*": ["utils/*"]
+        }
+    },
+    "include": ["./src"]
 }
