@@ -110,6 +110,13 @@
             "ts-jest": {
                 "isolatedModules": true
             }
+        },
+        "moduleNameMapper": {
+            "^@controllers/(.*)$": "<rootDir>/src/controllers/$1",
+            "^@models/(.*)$": "<rootDir>/src/models/$1",
+            "^@routes/(.*)$": "<rootDir>/src/routes/$1",
+            "^@definitions/(.*)$": "<rootDir>/src/types/$1",
+            "^@utils/(.*)$": "<rootDir>/src/utils/$1"
         }
     }
 }
