@@ -5,13 +5,15 @@ import logger from './logger';
 import { internalServerError } from './responses';
 
 const errorHandler = () => {
-    const middleware = (
+    const middleware = async (
         error: Error,
         req: Request,
         res: Response,
         next: NextFunction
     ) => {
-        logger.error(error.message);
+        if (error && error.message) logger.error(error.message);
+        else logger.error('No message');
+
         internalServerError(req, res);
     };
 
