@@ -1,14 +1,13 @@
-import axios from 'axios';
 import { DateTime } from 'luxon';
 import _ from 'lodash';
 
-import stopObject from '@definitions/stopObject';
-import logger from '@utils/logger';
+import Logger from '@utils/logger';
+import fetchData from './fetchData';
 
-const { DIGITRANSIT_URL, DIGITRANSIT_AREA } = process.env;
+const { DIGITRANSIT_AREA } = process.env;
 
 // Keep stops at memory
-const STOPS: { stops: string[]; validUntil: string | null } = {
+export const STOPS: { stops: string[]; validUntil: string | null } = {
     stops: [],
     validUntil: null
 };
@@ -28,7 +27,7 @@ export const getStops = async (): Promise<string[]> => {
         }
     }
 
-    logger.info('Stops are no longer valid, fetch again');
+    Logger.info('Stops are no longer valid, fetch again');
 
     const stops = await fetchData();
     const stopsParsed = _.map(stops, (stop) => stop.gtfsId);
@@ -36,7 +35,7 @@ export const getStops = async (): Promise<string[]> => {
     STOPS.stops = stopsParsed;
     STOPS.validUntil = currentTime.plus({ hours: 1 }).toISO();
 
-    logger.info(
+    Logger.info(
         `Fetched ${stopsParsed.length} stops from the API for the are ${DIGITRANSIT_AREA}`
     );
 
@@ -44,27 +43,10 @@ export const getStops = async (): Promise<string[]> => {
 };
 
 /**
- * Fetch stops in the area from the DigiTransit GraphQL API
- * @returns
+ * FOR TESTING USE ONLY!
+ * @param value
  */
-export const fetchData = async (): Promise<stopObject[]> => {
-    try {
-        const response = await axios({
-            method: 'post',
-            url: DIGITRANSIT_URL,
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            data: {
-                query: `{ stops(feeds: ["${DIGITRANSIT_AREA}"]) { gtfsId, name } }`
-            }
-        });
-
-        const stops: stopObject[] = response.data.data.stops;
-        return stops;
-    } catch {
-        logger.error('Failed to fetch stops from Digitransit');
-        return [];
-    }
+export const setStops = (value: { stops: string[]; validUntil: string }) => {
+    STOPS.stops = value.stops;
+    STOPS.validUntil = value.validUntil;
 };
