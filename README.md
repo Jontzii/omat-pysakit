@@ -2,6 +2,8 @@
 
 [![Test](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml)
 [![codecov](https://codecov.io/gh/Jontzii/omat-pysakit/branch/main/graph/badge.svg?token=MOLC69P5VL)](https://codecov.io/gh/Jontzii/omat-pysakit)
+![GitHub](https://img.shields.io/github/license/jontzii/omat-pysakit)
+![GitHub last commit](https://img.shields.io/github/last-commit/jontzii/omat-pysakit)
 
 ## Description
 
