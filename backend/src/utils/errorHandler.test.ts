@@ -17,9 +17,7 @@ describe('errorHandler', () => {
     let mockNext: jest.Mock;
 
     beforeEach(() => {
-        mockRequest = {
-            path: '/'
-        };
+        mockRequest = {};
         mockResponse = {};
         mockNext = jest.fn();
 

@@ -35,13 +35,10 @@ export const validateBody = () => {
                 (stopId: string) => `${DIGITRANSIT_AREA}:${stopId}`
             );
 
-            // Check the set languages
-            const langs = validateLanguages(req.body.languages);
-
             const payload: ScreenSettings = {
                 uuid: randomUUID(),
                 stops,
-                ...langs,
+                ...validateLanguages(req.body.languages),
                 ...checkTimePerLanguage(req.body.languageTime),
                 ...checkColumns(req.body.columns),
                 ...checkRows(req.body.rows)
@@ -67,17 +64,21 @@ export const checkStops = () => {
         res: Response,
         next: NextFunction
     ) => {
-        const stops: string[] = res.locals.payload.stops;
-        const allStops = await getStops();
+        try {
+            const stops: string[] = res.locals.payload.stops;
+            const allStops = await getStops();
 
-        if (!_.every(stops, (stopId) => _.includes(allStops, stopId))) {
-            Logger.warn(
-                'One or more stops could not be found from the list of stops'
-            );
-            return responses.badRequest(req, res);
+            if (!_.every(stops, (stopId) => _.includes(allStops, stopId))) {
+                Logger.warn(
+                    'One or more stops could not be found from the list of stops'
+                );
+                return responses.badRequest(req, res);
+            }
+
+            next();
+        } catch {
+            responses.internalServerError(req, res);
         }
-
-        next();
     };
 
     return middleware;
@@ -104,8 +105,12 @@ export const saveData = () => {
     return middleware;
 };
 
+/**
+ * Send the response
+ * @returns
+ */
 export const sendResponse = () => {
-    const middleware = (req: Request, res: Response) => {
+    const middleware = async (req: Request, res: Response) => {
         // Send the payload in the response
         responses.created(req, res, res.locals.payload);
     };
