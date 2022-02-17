@@ -37,6 +37,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(cors(corsOptions));
 
+app.get('/', (req: Request, res: Response) => res.status(200).send('OK'));
 app.use('/api/screen', screenRouter);
 app.use('/api/stops', stopsRouter);
 app.use((req: Request, res: Response) => notFound(req, res));
