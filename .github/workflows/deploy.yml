@@ -121,7 +121,7 @@ jobs:
 
             - name: Build, tag, and push image to Amazon ECR
               env:
-                  ECR_REGISTRY: public.ecr.aws/m1k8f5f4
+                  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                   ECR_REPOSITORY: omat-pysakit-backend
                   IMAGE_TAG: ${{ github.sha }}
               run: |
