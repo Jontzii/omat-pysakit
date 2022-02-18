@@ -3,6 +3,7 @@ FROM node:lts-alpine as build
 
 WORKDIR /app
 COPY . .
+RUN npm install
 RUN npm run build
 
 # Serve the page
