@@ -10,6 +10,11 @@
 
 The idea of this project is to create some kind of a copy of HSL's omat näytöt service for Nysse.
 
+## Running versions
+
+The latest version of frontend in `main`-branch is running at [omatpysakit.jontzi.com](https://omatpysakit.jontzi.com).
+The backend API is accessible from [omatpysakit.jontzi.com/api](https://omatpysakit.jontzi.com/api).
+
 ## API Docs
 
 The API docs for the backend are written in OpenAPI 3.0 and can be browsed [here](https://app.swaggerhub.com/apis/jontzii/omat-pysakit/1.0.0)
