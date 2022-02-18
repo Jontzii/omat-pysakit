@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Import components
+import LandingScreen from './components/landingScreen/landingScreen';
+import CreateScreen from './components/createScreen/createScreen';
+import ViewScreen from './components/viewScreen/viewScreen';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<LandingScreen />} />
+                <Route path="/createScreen" element={<CreateScreen />} />
+                <Route path="/screen" element={<ViewScreen />} />
+            </Routes>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );
