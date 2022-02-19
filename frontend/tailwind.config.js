@@ -11,7 +11,11 @@ module.exports = {
             'info-blue': '#00579d',
             'nysse-blue-light': '#1c57cf',
             'nysse-blue-dark': '#1a4a8f',
-            'clear-white': '#ffffff'
+            'nysse-light': '#cdeafc',
+            'clear-white': '#ffffff',
+            black: '#000000',
+            'nysse-darker-shade': '#153b72',
+            'error-red': '#D8000C'
         },
         extend: {}
     },

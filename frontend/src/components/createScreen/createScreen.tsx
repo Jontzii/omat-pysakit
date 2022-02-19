@@ -1,10 +1,10 @@
 import react from 'react';
-import CreateScreenHeader from '../header/createScreenHeader';
+import AppHeader from '../header/appHeader';
 
 const CreateScreen = () => {
     return (
         <div className="bg-nysse-blue-light h-screen w-screen">
-            <CreateScreenHeader />
+            <AppHeader />
             <div className=""></div>
         </div>
     );

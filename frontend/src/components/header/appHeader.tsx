@@ -1,17 +1,16 @@
 import react from 'react';
 
-const LandingHeader = (props: any) => {
-    const { displayBackArrow, arrowTarget } = props;
-
+const AppHeader = () => {
     return (
         <nav className="bg-nysse-blue-light border-solid border-b-2 border-clear-white">
-            <div className=" max-w-full mx-auto px-2 sm:px-6 lg:px-8 text-clear-white">
-                <div className="relative flex items-center justify-between h-16 md:h-20 lg:h-24">
-                    <span className="hidden sm:block"></span>
-                    <div className="text-4xl md:text-5xl lg:text-6xl">
+            <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 text-clear-white">
+                <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
+                    <span className="hidden sm:block" />
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-medium">
                         Omat Pysäkit
                     </div>
-                    <button className="p-2 rounded-md hover:bg-nysse-blue-dark focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white">
+
+                    <button className="p-2 rounded-md hover:bg-nysse-blue-dark focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white transition duration-150 ease-in-out">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"
@@ -33,4 +32,4 @@ const LandingHeader = (props: any) => {
     );
 };
 
-export default LandingHeader;
+export default AppHeader;

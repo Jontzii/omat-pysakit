@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Import components
 import LandingScreen from './components/landingScreen/landingScreen';
@@ -17,6 +19,17 @@ ReactDOM.render(
                 <Route path="/createScreen" element={<CreateScreen />} />
                 <Route path="/screen" element={<ViewScreen />} />
             </Routes>
+            <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
