@@ -13,7 +13,7 @@ The idea of this project is to create some kind of a copy of HSL's omat näytöt
 ## Running versions
 
 The latest version of frontend in `main`-branch is running at [omatpysakit.jontzi.com](https://omatpysakit.jontzi.com).
-The backend API is accessible from [omatpysakit.jontzi.com/api](https://omatpysakit.jontzi.com/api).
+The backend API (version 1) is accessible from [api.omatpysakit.jontzi.com/v1](https://api.omatpysakit.jontzi.com/v1).
 
 ## API Docs
 
