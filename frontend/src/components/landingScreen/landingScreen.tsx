@@ -1,10 +1,10 @@
 import react from 'react';
-import AppHeader from '../header/header';
+import LandingScreenHeader from '../header/landingHeader';
 
 const LandingScreen = () => {
     return (
         <div className="bg-nysse-blue-light h-screen w-screen">
-            <AppHeader />
+            <LandingScreenHeader />
             <div className=""></div>
         </div>
     );

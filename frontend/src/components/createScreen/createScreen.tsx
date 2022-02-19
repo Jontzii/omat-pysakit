@@ -1,11 +1,11 @@
 import react from 'react';
+import CreateScreenHeader from '../header/createScreenHeader';
 
 const CreateScreen = () => {
-    console.log('Create');
-
     return (
-        <div>
-            <p>CreateScreen</p>
+        <div className="bg-nysse-blue-light h-screen w-screen">
+            <CreateScreenHeader />
+            <div className=""></div>
         </div>
     );
 };
