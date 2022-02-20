@@ -16,8 +16,6 @@ import {
 
 import * as responses from '@utils/responses';
 
-const { DIGITRANSIT_AREA } = process.env;
-
 /**
  * Validate values given in body
  * @returns

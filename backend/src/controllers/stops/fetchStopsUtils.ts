@@ -1,5 +1,4 @@
 import { DateTime } from 'luxon';
-import _ from 'lodash';
 
 import Logger from '@utils/logger';
 import fetchData from './fetchData';
@@ -36,7 +35,7 @@ export const getStops = async (): Promise<stopObject[]> => {
     STOPS.validUntil = currentTime.plus({ hours: 1 }).toISO();
 
     Logger.info(
-        `Fetched ${stops.length} stops from the API for the are ${DIGITRANSIT_AREA}`
+        `Fetched ${stops.length} stops from the API for the area ${DIGITRANSIT_AREA}`
     );
 
     return stops;
