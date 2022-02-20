@@ -1,14 +1,20 @@
-import react from 'react';
+import react, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ScreenForm from './block/screenForm';
+import LoadingSpinner from './block/spinner';
 
 const ActionHalf = () => {
     const navigate = useNavigate();
+    const [isLoading, setLoading] = useState(false);
 
     const directToCreateScreen = (e: any) => {
         e.preventDefault();
-        navigate('/createScreen');
+        setLoading(true);
+
+        setTimeout(() => {
+            navigate('/createScreen');
+        }, 250);
     };
 
     return (
@@ -24,10 +30,16 @@ const ActionHalf = () => {
                     Luo uusi pysäkkinäyttö
                 </h1>
                 <button
-                    className="bg-nysse-blue-dark font-bold py-4 px-8 rounded-full transition duration-150 ease-in-out border border-solid border-nysse-light hover:bg-nysse-light hover:text-nysse-blue-dark"
+                    className="
+                        bg-nysse-blue-dark font-bold py-4 px-8 rounded-full
+                        transition duration-150 ease-in-out
+                        border border-solid border-nysse-light 
+                        hover:bg-nysse-light hover:text-nysse-blue-dark
+                    "
                     onClick={directToCreateScreen}
+                    disabled={isLoading}
                 >
-                    Luo uusi näyttö
+                    {(isLoading && <LoadingSpinner />) || 'Luo uusi näyttö'}
                 </button>
             </div>
         </div>

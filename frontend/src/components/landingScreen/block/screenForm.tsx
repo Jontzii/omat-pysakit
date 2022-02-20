@@ -3,13 +3,17 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 
 import { checkIfScreenExists } from '../../../services/screenService';
+import LoadingSpinner from './spinner';
 
 const ScreenForm = () => {
     const [uuid, setUuid] = useState('');
     const [isLoading, setLoading] = useState(false);
-
     const navigation = useNavigate();
 
+    /**
+     * Handles submit of search form
+     * @param e
+     */
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -20,8 +24,10 @@ const ScreenForm = () => {
         setLoading(true);
 
         if (!(await checkIfScreenExists(uuid))) {
-            toast.error('Näyttöä ei löytynyt!');
-            return setLoading(false);
+            return setTimeout(() => {
+                toast.error('Näyttöä ei löytynyt!');
+                setLoading(false);
+            }, 1000);
         }
 
         navigation(`/screen?id=${uuid}`);
@@ -52,22 +58,7 @@ const ScreenForm = () => {
                     disabled:bg-nysse-light disabled:text-nysse-blue-dark
                     transition duration-150 ease-in-out items-center"
             >
-                {isLoading && (
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 animate-spin"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                        />
-                    </svg>
-                )}
+                {isLoading && <LoadingSpinner />}
                 {!isLoading && (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
