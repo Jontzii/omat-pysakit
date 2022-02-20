@@ -50,7 +50,7 @@ describe('saveScreenController', () => {
         test('Should add data to locals', async () => {
             mockRequest = {
                 body: {
-                    stops: ['3001', '3002'],
+                    stops: ['test:3001', 'test:3002'],
                     languages: ['fi']
                 }
             };
@@ -76,8 +76,8 @@ describe('saveScreenController', () => {
             );
 
             expect(mockResponse.locals?.payload.stops).toEqual([
-                'undefined:3001',
-                'undefined:3002'
+                'test:3001',
+                'test:3002'
             ]);
             expect(mockResponse.locals?.payload.displayFinnish).toEqual(true);
             expect(mockResponse.locals?.payload.displaySwedish).toEqual(false);
@@ -103,12 +103,21 @@ describe('saveScreenController', () => {
             mockResponse = {
                 locals: {
                     payload: {
-                        stops: ['3001', '3002']
+                        stops: ['test:3001', 'test:3002']
                     }
                 }
             };
 
-            mockedGetStops.mockResolvedValueOnce(['3000', '3001', '3002']);
+            mockedGetStops.mockResolvedValueOnce([
+                {
+                    gtfsId: 'test:3001',
+                    name: 'first'
+                },
+                {
+                    gtfsId: 'test:3002',
+                    name: 'second'
+                }
+            ]);
 
             await checkStops()(
                 mockRequest as Request,
@@ -128,7 +137,16 @@ describe('saveScreenController', () => {
                 }
             };
 
-            mockedGetStops.mockResolvedValueOnce(['3000', '3001', '3002']);
+            mockedGetStops.mockResolvedValueOnce([
+                {
+                    gtfsId: 'test:3001',
+                    name: 'first'
+                },
+                {
+                    gtfsId: 'test:3002',
+                    name: 'second'
+                }
+            ]);
 
             await checkStops()(
                 mockRequest as Request,
@@ -143,12 +161,21 @@ describe('saveScreenController', () => {
             mockResponse = {
                 locals: {
                     payload: {
-                        stops: ['3001', '3002']
+                        stops: ['test:3001', 'test:3002']
                     }
                 }
             };
 
-            mockedGetStops.mockResolvedValueOnce(['3000', '3001']);
+            mockedGetStops.mockResolvedValueOnce([
+                {
+                    gtfsId: 'test:3000',
+                    name: 'first'
+                },
+                {
+                    gtfsId: 'test:3001',
+                    name: 'second'
+                }
+            ]);
 
             await checkStops()(
                 mockRequest as Request,
@@ -164,7 +191,7 @@ describe('saveScreenController', () => {
             mockResponse = {
                 locals: {
                     payload: {
-                        stops: ['3001', '3002']
+                        stops: ['test:3001', 'test:3002']
                     }
                 }
             };

@@ -30,10 +30,7 @@ export const validateBody = () => {
     ) => {
         try {
             // Form correct form of stopIds
-            const stops: string[] = _.map(
-                req.body.stops,
-                (stopId: string) => `${DIGITRANSIT_AREA}:${stopId}`
-            );
+            const stops: string[] = req.body.stops;
 
             const payload: ScreenSettings = {
                 uuid: randomUUID(),
@@ -67,8 +64,9 @@ export const checkStops = () => {
         try {
             const stops: string[] = res.locals.payload.stops;
             const allStops = await getStops();
+            const stopIds = _.map(allStops, (val) => val.gtfsId);
 
-            if (!_.every(stops, (stopId) => _.includes(allStops, stopId))) {
+            if (!_.every(stops, (stopId) => _.includes(stopIds, stopId))) {
                 Logger.warn(
                     'One or more stops could not be found from the list of stops'
                 );
