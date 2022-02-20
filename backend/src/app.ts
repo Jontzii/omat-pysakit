@@ -38,6 +38,12 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 app.get('/', (req: Request, res: Response) => res.status(200).send('OK'));
+app.get(
+    '/loaderio-402df015d9c7a2b274338d9358af2d1a',
+    (req: Request, res: Response) =>
+        res.status(200).send('loaderio-402df015d9c7a2b274338d9358af2d1a')
+);
+
 app.use('/v1/screen', screenRouter);
 app.use('/v1/stops', stopsRouter);
 app.use((req: Request, res: Response) => notFound(req, res));
