@@ -1,6 +1,9 @@
-import react from 'react';
+import react, { useState } from 'react';
+import SlidingMenu from '../menu/menu';
 
 const AppHeader = () => {
+    const [menuOpen, setMenu] = useState(false);
+
     return (
         <nav className="bg-nysse-blue-light border-solid border-b-2 border-clear-white">
             <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 text-clear-white">
@@ -10,7 +13,14 @@ const AppHeader = () => {
                         Omat Pysäkit
                     </div>
 
-                    <button className="p-2 rounded-md hover:bg-nysse-blue-dark focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white transition duration-150 ease-in-out">
+                    <button
+                        className="
+                            p-2 rounded-md hover:bg-nysse-blue-dark
+                            focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white
+                            transition duration-150 ease-in-out
+                        "
+                        onClick={() => setMenu(true)}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"
@@ -28,6 +38,7 @@ const AppHeader = () => {
                     </button>
                 </div>
             </div>
+            <SlidingMenu menuVisible={menuOpen} setMenuOpen={setMenu} />
         </nav>
     );
 };

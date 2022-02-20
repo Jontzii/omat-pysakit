@@ -1,5 +1,6 @@
 import react from 'react';
 import AppHeader from '../header/appHeader';
+import SlidingMenu from '../menu/menu';
 
 const CreateScreen = () => {
     return (
