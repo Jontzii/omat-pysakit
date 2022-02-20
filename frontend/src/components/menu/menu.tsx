@@ -15,7 +15,7 @@ const SlidingMenu = ({ menuVisible, setMenuOpen }: MenuProps) => {
     return (
         <div
             className={
-                'fixed transition-transform h-screen w-screen md:w-80 top-0 right-0 bg-nysse-blue-dark text-clear-white border-l-2 border-solid border-clear-white z-50' +
+                'fixed transition-transform h-full w-screen md:w-80 top-0 right-0 bg-nysse-blue-dark text-clear-white md:border-l-2 md:border-solid md:border-clear-white z-50' +
                 visible
             }
         >
@@ -44,10 +44,23 @@ const SlidingMenu = ({ menuVisible, setMenuOpen }: MenuProps) => {
                         />
                     </svg>
                 </button>
-                <div className="flex flex-col p-2">
-                    <p>First</p>
-                    <p>Second</p>
-                    <p>Third</p>
+                <div className="flex flex-col w-full">
+                    <div className="w-full p-4 text-left">
+                        <h1 className="text-4xl font-medium">Valitse kieli</h1>
+                        <div className="grid grid-rows-3 items-center text-left text-xl underline py-4">
+                            <a href="" onClick={(e) => e.preventDefault()}>
+                                Suomi
+                            </a>
+                            <a className="line-through">Svenska</a>
+                            <a className="line-through">English</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="fixed w-full bottom-5">
+                    <div className="grid grid-cols-2 items-center text-center text-xl underline">
+                        <a>Tietoja</a>
+                        <a>Legal</a>
+                    </div>
                 </div>
             </div>
         </div>

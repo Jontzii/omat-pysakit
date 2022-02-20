@@ -25,7 +25,7 @@ const ActionHalf = () => {
                 </h1>
                 <ScreenForm />
             </div>
-            <div className="flex flex-col justify-center items-center p-2 w-full">
+            <div className="flex flex-col justify-center items-center p-2">
                 <h1 className="text-2xl font-medium p-4">
                     Luo uusi pysäkkinäyttö
                 </h1>
@@ -35,6 +35,7 @@ const ActionHalf = () => {
                         transition duration-150 ease-in-out
                         border border-solid border-nysse-light 
                         hover:bg-nysse-light hover:text-nysse-blue-dark
+                        w-full items-center text-center
                     "
                     onClick={directToCreateScreen}
                     disabled={isLoading}
