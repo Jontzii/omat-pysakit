@@ -17,4 +17,4 @@ The backend API (version 1) is accessible from [api.omatpysakit.jontzi.com/v1](h
 
 ## API Docs
 
-The API docs for the backend are written in OpenAPI 3.0 and can be browsed [here](https://app.swaggerhub.com/apis/jontzii/omat-pysakit/1.0.0)
+The API docs for the backend are written in OpenAPI 3.0 and can be browsed [here](https://app.swaggerhub.com/apis/jontzii/omat-pysakit/1.1.0)
