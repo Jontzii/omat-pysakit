@@ -1,8 +1,11 @@
-name: Deploy
+name: Deploy backend
 
 on:
     push:
-        branches: [main]
+        branches:
+            - main
+        paths:
+            - './backend/**.*'
 
     workflow_dispatch:
 
@@ -18,95 +21,6 @@ jobs:
                   cache: npm
             - run: npm ci
             - run: npm run check-style
-
-    frontend-build:
-        name: Build frontend
-        runs-on: ubuntu-latest
-        needs: check-style
-
-        defaults:
-            run:
-                working-directory: frontend
-
-        steps:
-            - uses: actions/checkout@main
-            - uses: actions/setup-node@main
-              with:
-                  node-version: 16
-                  cache: npm
-            - run: npm ci
-            - run: npm run build:ci
-
-    frontend-test:
-        name: Test frontend
-        runs-on: ubuntu-latest
-        needs: frontend-build
-
-        defaults:
-            run:
-                working-directory: frontend
-
-        steps:
-            - uses: actions/checkout@main
-            - uses: actions/setup-node@main
-              with:
-                  node-version: 16
-                  cache: npm
-            - run: npm ci
-            - run: npm run test:ci
-
-    frontend-deploy:
-        name: Deploy frontend
-        needs: frontend-test
-        runs-on: ubuntu-latest
-
-        env:
-            AWS_REGION: eu-central-1
-            ECR_REPOSITORY: omat-pysakit/frontend
-            ECS_SERVICE: OmatPysakitFrontend
-            ECS_CLUSTER: OmatPysakitCluster
-            ECS_TASK_DEFINITION: .aws/frontend-task.json
-            CONTAINER_NAME: omat-pysakit-frontend
-
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v1
-              with:
-                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: eu-central-1
-
-            - name: Login to Amazon ECR
-              id: login-ecr
-              uses: aws-actions/amazon-ecr-login@v1
-
-            - name: Build, tag, and push image to Amazon ECR
-              id: build-image
-              env:
-                  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-                  IMAGE_TAG: ${{ github.sha }}
-              run: |
-                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./frontend
-                  docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-                  echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-            - name: Fill in the new image ID in the Amazon ECS task definition
-              id: task-def
-              uses: aws-actions/amazon-ecs-render-task-definition@v1
-              with:
-                  task-definition: ${{ env.ECS_TASK_DEFINITION }}
-                  container-name: ${{ env.CONTAINER_NAME }}
-                  image: ${{ steps.build-image.outputs.image }}
-
-            - name: Deploy Amazon ECS task definition
-              uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-              with:
-                  task-definition: ${{ steps.task-def.outputs.task-definition }}
-                  service: ${{ env.ECS_SERVICE }}
-                  cluster: ${{ env.ECS_CLUSTER }}
-                  wait-for-service-stability: false
 
     backend-build:
         name: Build backend
