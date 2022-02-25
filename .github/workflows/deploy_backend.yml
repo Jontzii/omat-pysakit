@@ -16,6 +16,7 @@ env:
     PROJECT_WIP: ${{ secrets.GCP_PROJECT_WIP }}
     PROJECT_REGISTRY: ${{ secrets.GAR_REGISTRY }}
     REPOSITORY: omat-pysakit
+    CLOUD_RUN_SERVICE: omat-pysakit-backend
     IMAGE: backend
 
 jobs:
@@ -29,7 +30,7 @@ jobs:
                   node-version: 16
                   cache: npm
             - run: npm ci
-            - run: npm run check-style
+            - run: npm run check-style-backend
 
     backend-build:
         name: Build backend
@@ -134,7 +135,7 @@ jobs:
             - id: 'deploy'
               uses: 'google-github-actions/deploy-cloudrun@v0'
               with:
-                  service: 'omat-pysakit-backend'
-                  image: '$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA'
+                  service: ${{ env.CLOUD_RUN_SERVICE }}
+                  image: '${{ env.PROJECT_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ env.GITHUB_SHA }}'
                   region: 'europe-north1'
                   project_id: ${{ env.PROJECT_ID }}

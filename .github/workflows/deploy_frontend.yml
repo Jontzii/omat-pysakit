@@ -21,7 +21,7 @@ jobs:
                   node-version: 16
                   cache: npm
             - run: npm ci
-            - run: npm run check-style
+            - run: npm run check-style-frontend
 
     frontend-build:
         name: Build frontend

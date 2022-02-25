@@ -1,0 +1,62 @@
+name: Test backend
+on:
+    push:
+        branches-ignore:
+            - 'main'
+        paths:
+            - 'backend/**'
+            - '.github/workflows/test_backend.yml'
+
+jobs:
+    check-style:
+        name: Check code style
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@main
+            - uses: actions/setup-node@main
+              with:
+                  node-version: 16
+                  cache: npm
+            - run: npm ci
+            - run: npm run check-style-backend
+
+    backend-build:
+        name: Build backend
+        needs: check-style
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: backend
+
+        steps:
+            - uses: actions/checkout@main
+            - uses: actions/setup-node@main
+              with:
+                  node-version: 16
+                  cache: npm
+            - run: npm ci
+            - run: npm run lint:ci
+            - run: npm run build
+
+    backend-test:
+        name: Test backend
+        needs: backend-build
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: backend
+
+        steps:
+            - uses: actions/checkout@main
+            - uses: actions/setup-node@main
+              with:
+                  node-version: 16
+                  cache: npm
+            - run: npm ci
+            - run: npm run test:ci
+            - uses: codecov/codecov-action@v2
+              with:
+                  flags: unittests,backend
+                  fail_ci_if_error: true
