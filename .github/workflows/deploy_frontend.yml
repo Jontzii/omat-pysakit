@@ -102,7 +102,35 @@ jobs:
                     --tag "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
                     --build-arg GITHUB_SHA="$GITHUB_SHA" \
                     --build-arg GITHUB_REF="$GITHUB_REF" \
-                    ./backend
+                    ./frontend
 
             - name: Push image
               run: docker push "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+
+    frontend-deploy-gcp:
+        name: Deploy frontend to Cloud Run
+        needs: frontend-push-gcp
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - id: 'auth'
+              name: 'Authenticate to Google Cloud'
+              uses: 'google-github-actions/auth@v0'
+              with:
+                  project_id: ${{ env.PROJECT_ID }}
+                  workload_identity_provider: ${{ env.PROJECT_WIP }}
+                  service_account: ${{ env.PROJECT_SERVICE_ACCOUNT }}
+
+            - id: 'deploy'
+              uses: 'google-github-actions/deploy-cloudrun@v0'
+              with:
+                  service: ${{ env.CLOUD_RUN_SERVICE }}
+                  image: '${{ env.PROJECT_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}'
+                  region: 'europe-north1'
+                  project_id: ${{ env.PROJECT_ID }}
