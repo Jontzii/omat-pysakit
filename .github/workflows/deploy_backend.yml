@@ -15,7 +15,8 @@ env:
     PROJECT_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
     PROJECT_WIP: ${{ secrets.GCP_PROJECT_WIP }}
     PROJECT_REGISTRY: ${{ secrets.GAR_REGISTRY }}
-    IMAGE: ${{ secrets.BACKEND_IMAGE }}
+    REPOSITORY: omat-pysakit
+    IMAGE: backend
 
 jobs:
     check-style:
@@ -87,24 +88,25 @@ jobs:
               name: 'Authenticate to Google Cloud'
               uses: 'google-github-actions/auth@v0'
               with:
-                  workload_identity_provider: $PROJECT_WIP
-                  service_account: $PROJECT_SERVICE_ACCOUNT
+                  project_id: ${{ env.PROJECT_ID }}
+                  workload_identity_provider: ${{ env.PROJECT_WIP }}
+                  service_account: ${{ env.PROJECT_SERVICE_ACCOUNT }}
                   token_format: 'access_token'
 
             - name: Login to GAR
               uses: docker/login-action@v1
               with:
-                  registry: $PROJECT_REGISTRY
+                  registry: ${{ env.PROJECT_REGISTRY }}
                   username: oauth2accesstoken
                   password: ${{ steps.auth.outputs.access_token }}
 
             - name: Build image
               run: |
                   docker build \
-                    --tag "$PROJECT_REGISTRY/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+                    --tag "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
                     --build-arg GITHUB_SHA="$GITHUB_SHA" \
                     --build-arg GITHUB_REF="$GITHUB_REF" \
                     ./backend
 
             - name: Push image
-              run: docker push "$PROJECT_REGISTRY/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+              run: docker push "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
