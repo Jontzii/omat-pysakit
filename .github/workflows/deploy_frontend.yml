@@ -10,6 +10,15 @@ on:
 
     workflow_dispatch:
 
+env:
+    PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+    PROJECT_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+    PROJECT_WIP: ${{ secrets.GCP_PROJECT_WIP }}
+    PROJECT_REGISTRY: ${{ secrets.GAR_REGISTRY }}
+    REPOSITORY: omat-pysakit
+    CLOUD_RUN_SERVICE: omat-pysakit-frontend
+    IMAGE: frontend
+
 jobs:
     check-style:
         name: Check code style
@@ -59,55 +68,41 @@ jobs:
             - run: npm ci
             - run: npm run test:ci
 
-    frontend-deploy:
-        name: Deploy frontend
+    frontend-push-gcp:
+        name: Build and push frontend to GAR
         needs: frontend-test
         runs-on: ubuntu-latest
 
-        env:
-            AWS_REGION: eu-central-1
-            ECR_REPOSITORY: omat-pysakit/frontend
-            ECS_SERVICE: OmatPysakitFrontend
-            ECS_CLUSTER: OmatPysakitCluster
-            ECS_TASK_DEFINITION: .aws/frontend-task.json
-            CONTAINER_NAME: omat-pysakit-frontend
+        permissions:
+            contents: 'read'
+            id-token: 'write'
 
         steps:
             - uses: actions/checkout@v2
 
-            - name: Configure AWS credentials
-              uses: aws-actions/configure-aws-credentials@v1
+            - id: 'auth'
+              name: 'Authenticate to Google Cloud'
+              uses: 'google-github-actions/auth@v0'
               with:
-                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  aws-region: eu-central-1
+                  project_id: ${{ env.PROJECT_ID }}
+                  workload_identity_provider: ${{ env.PROJECT_WIP }}
+                  service_account: ${{ env.PROJECT_SERVICE_ACCOUNT }}
+                  token_format: 'access_token'
 
-            - name: Login to Amazon ECR
-              id: login-ecr
-              uses: aws-actions/amazon-ecr-login@v1
+            - name: Login to GAR
+              uses: docker/login-action@v1
+              with:
+                  registry: ${{ env.PROJECT_REGISTRY }}
+                  username: oauth2accesstoken
+                  password: ${{ steps.auth.outputs.access_token }}
 
-            - name: Build, tag, and push image to Amazon ECR
-              id: build-image
-              env:
-                  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-                  IMAGE_TAG: ${{ github.sha }}
+            - name: Build image
               run: |
-                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./frontend
-                  docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-                  echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+                  docker build \
+                    --tag "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
+                    --build-arg GITHUB_SHA="$GITHUB_SHA" \
+                    --build-arg GITHUB_REF="$GITHUB_REF" \
+                    ./backend
 
-            - name: Fill in the new image ID in the Amazon ECS task definition
-              id: task-def
-              uses: aws-actions/amazon-ecs-render-task-definition@v1
-              with:
-                  task-definition: ${{ env.ECS_TASK_DEFINITION }}
-                  container-name: ${{ env.CONTAINER_NAME }}
-                  image: ${{ steps.build-image.outputs.image }}
-
-            - name: Deploy Amazon ECS task definition
-              uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-              with:
-                  task-definition: ${{ steps.task-def.outputs.task-definition }}
-                  service: ${{ env.ECS_SERVICE }}
-                  cluster: ${{ env.ECS_CLUSTER }}
-                  wait-for-service-stability: false
+            - name: Push image
+              run: docker push "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
