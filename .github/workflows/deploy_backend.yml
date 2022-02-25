@@ -136,6 +136,6 @@ jobs:
               uses: 'google-github-actions/deploy-cloudrun@v0'
               with:
                   service: ${{ env.CLOUD_RUN_SERVICE }}
-                  image: '${{ env.PROJECT_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ env.GITHUB_SHA }}'
+                  image: '${{ env.PROJECT_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}'
                   region: 'europe-north1'
                   project_id: ${{ env.PROJECT_ID }}
