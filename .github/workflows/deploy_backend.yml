@@ -15,7 +15,8 @@ env:
     PROJECT_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
     PROJECT_WIP: ${{ secrets.GCP_PROJECT_WIP }}
     PROJECT_REGISTRY: ${{ secrets.GAR_REGISTRY }}
-    IMAGE: omat-pysakit-backend
+    REPOSITORY: omat-pysakit-backend
+    IMAGE: production
 
 jobs:
     check-style:
@@ -102,10 +103,10 @@ jobs:
             - name: Build image
               run: |
                   docker build \
-                    --tag "$PROJECT_REGISTRY/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+                    --tag "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
                     --build-arg GITHUB_SHA="$GITHUB_SHA" \
                     --build-arg GITHUB_REF="$GITHUB_REF" \
                     ./backend
 
             - name: Push image
-              run: docker push "$PROJECT_REGISTRY/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+              run: docker push "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
