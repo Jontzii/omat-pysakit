@@ -15,8 +15,8 @@ env:
     PROJECT_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
     PROJECT_WIP: ${{ secrets.GCP_PROJECT_WIP }}
     PROJECT_REGISTRY: ${{ secrets.GAR_REGISTRY }}
-    REPOSITORY: omat-pysakit-backend
-    IMAGE: production
+    REPOSITORY: omat-pysakit
+    IMAGE: backend
 
 jobs:
     check-style:
