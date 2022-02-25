@@ -1,8 +1,12 @@
 # Omat pysäkit
 
-[![Test](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/Test.yml)
-[![Deploy frontend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml)
-[![Deploy backend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml)
+|Frontend|Backend|
+|---|---|
+|[![Test frontend](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_frontend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_frontend.yml)|[![Test backend](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_backend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_backend.yml)|
+|[![Deploy frontend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml)|[![Deploy backend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml)|
+
+### Badges
+
 [![codecov](https://codecov.io/gh/Jontzii/omat-pysakit/branch/main/graph/badge.svg?token=MOLC69P5VL)](https://codecov.io/gh/Jontzii/omat-pysakit)
 ![GitHub](https://img.shields.io/github/license/jontzii/omat-pysakit)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jontzii/omat-pysakit)
