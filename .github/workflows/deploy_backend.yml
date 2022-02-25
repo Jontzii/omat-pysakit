@@ -6,7 +6,7 @@ on:
             - main
         paths:
             - 'backend/**'
-            - '.github/workflows/**'
+            - '.github/workflows/deploy_backend.yml'
 
     workflow_dispatch:
 
@@ -110,3 +110,31 @@ jobs:
 
             - name: Push image
               run: docker push "$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+
+    backend-deploy-gcp:
+        name: Deploy backend to Cloud Run
+        needs: backend-push-gcp
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - id: 'auth'
+              name: 'Authenticate to Google Cloud'
+              uses: 'google-github-actions/auth@v0'
+              with:
+                  project_id: ${{ env.PROJECT_ID }}
+                  workload_identity_provider: ${{ env.PROJECT_WIP }}
+                  service_account: ${{ env.PROJECT_SERVICE_ACCOUNT }}
+
+            - id: 'deploy'
+              uses: 'google-github-actions/deploy-cloudrun@v0'
+              with:
+                  service: 'omat-pysakit-backend'
+                  image: '$PROJECT_REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA'
+                  region: 'europe-north1'
+                  project_id: ${{ env.PROJECT_ID }}
