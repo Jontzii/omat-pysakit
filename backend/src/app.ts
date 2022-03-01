@@ -10,8 +10,7 @@ import errorHandler from './utils/errorHandler';
 import { getDatabaseUrl } from './utils/databaseConfig';
 import { notFound } from './utils/responses';
 
-import { router as screenRouter } from './routes/screen';
-import { router as stopsRouter } from './routes/stops';
+import v1Router from './routes/v1';
 
 const app = express();
 const port = parseInt(process.env.PORT || '8080');
@@ -44,8 +43,7 @@ app.get(
         res.status(200).send('loaderio-402df015d9c7a2b274338d9358af2d1a')
 );
 
-app.use('/v1/screen', screenRouter);
-app.use('/v1/stops', stopsRouter);
+app.use('/v1', v1Router);
 app.use((req: Request, res: Response) => notFound(req, res));
 app.use(errorHandler());
 
