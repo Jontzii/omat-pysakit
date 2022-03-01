@@ -1,9 +1,9 @@
 # Omat pysäkit
 
-|Frontend|Backend|
-|---|---|
-|[![Test frontend](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_frontend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_frontend.yml)|[![Test backend](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_backend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_backend.yml)|
-|[![Deploy frontend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml)|[![Deploy backend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml)|
+| Frontend                                                                                                                                                                                     | Backend                                                                                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![Test frontend](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_frontend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_frontend.yml)       | [![Test backend](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_backend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/test_backend.yml)       |
+| [![Deploy frontend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_frontend.yml) | [![Deploy backend](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml/badge.svg)](https://github.com/Jontzii/omat-pysakit/actions/workflows/deploy_backend.yml) |
 
 ### Badges
 
@@ -17,8 +17,8 @@ The idea of this project is to create some kind of a copy of HSL's omat näytöt
 
 ## Running versions
 
-The latest version of frontend in `main`-branch is running at [omatpysakit.jontzi.com](https://omatpysakit.jontzi.com).
-The backend API (version 1) is accessible from [api.omatpysakit.jontzi.com/v1](https://api.omatpysakit.jontzi.com/v1).
+The latest version of frontend in `main`-branch is running at [pysakit.com](https://pysakit.com).
+The backend API (version 1) is accessible from [api.pysakit.com/v1](https://api.pysakit.com/v1).
 
 ## API Docs
 
