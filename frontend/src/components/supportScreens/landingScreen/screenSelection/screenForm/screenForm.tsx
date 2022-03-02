@@ -2,8 +2,8 @@ import react, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 
-import { checkIfScreenExists } from '../../../services/screenService';
-import LoadingSpinner from './spinner';
+import { checkIfScreenExists } from '../../../../../services/screenService';
+import LoadingSpinner from '../../../../uiElements/spinner';
 
 const ScreenForm = () => {
     const [uuid, setUuid] = useState('');

@@ -7,9 +7,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Import components
-import LandingScreen from './components/landingScreen/landingScreen';
-import CreateScreen from './components/createScreen/createScreen';
-import ViewScreen from './components/viewScreen/viewScreen';
+import LandingScreen from './components/supportScreens/landingScreen';
+import CreateScreen from './components/supportScreens/createScreen';
+import StopScreen from './components/stopScreen';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -17,7 +17,7 @@ ReactDOM.render(
             <Routes>
                 <Route path="/" element={<LandingScreen />} />
                 <Route path="/createScreen" element={<CreateScreen />} />
-                <Route path="/screen" element={<ViewScreen />} />
+                <Route path="/screen" element={<StopScreen />} />
             </Routes>
             <ToastContainer
                 position="bottom-left"

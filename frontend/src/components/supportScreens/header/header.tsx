@@ -1,5 +1,5 @@
 import react, { useState } from 'react';
-import SlidingMenu from '../menu/menu';
+import SlidingMenu from '../menu';
 
 const AppHeader = () => {
     const [menuOpen, setMenu] = useState(false);
