@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 
 interface MenuProps {
     menuVisible: boolean;
@@ -48,11 +48,15 @@ const SlidingMenu = ({ menuVisible, setMenuOpen }: MenuProps) => {
                     <div className="w-full p-4 text-left">
                         <h1 className="text-4xl font-medium">Valitse kieli</h1>
                         <div className="grid grid-rows-3 items-center text-left text-xl underline py-4">
-                            <a href="" onClick={(e) => e.preventDefault()}>
+                            <a href="#" onClick={(e) => e.preventDefault()}>
                                 Suomi
                             </a>
-                            <a className="line-through">Svenska</a>
-                            <a className="line-through">English</a>
+                            <a href="#" className="line-through">
+                                Svenska
+                            </a>
+                            <a href="#" className="line-through">
+                                English
+                            </a>
                         </div>
                     </div>
                 </div>

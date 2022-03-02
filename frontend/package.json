@@ -24,6 +24,7 @@
     "devDependencies": {
         "autoprefixer": "^10.4.2",
         "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "^7.29.2",
         "postcss": "^8.4.6",
         "tailwindcss": "^3.0.23"
     },
@@ -37,6 +38,7 @@
     },
     "eslintConfig": {
         "extends": [
+            "plugin:react/recommended",
             "react-app",
             "react-app/jest",
             "prettier"
