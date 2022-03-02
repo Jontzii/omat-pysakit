@@ -47,23 +47,21 @@ const SlidingMenu = ({ menuVisible, setMenuOpen }: MenuProps) => {
                 <div className="flex flex-col w-full">
                     <div className="w-full p-4 text-left">
                         <h1 className="text-4xl font-medium">Valitse kieli</h1>
-                        <div className="grid grid-rows-3 items-center text-left text-xl underline py-4">
-                            <a href="#" onClick={(e) => e.preventDefault()}>
-                                Suomi
-                            </a>
-                            <a href="#" className="line-through">
+                        <div className="grid grid-rows-3 items-stretch text-left text-xl underline py-4">
+                            <button className="text-left">Suomi</button>
+                            <button className="text-left line-through">
                                 Svenska
-                            </a>
-                            <a href="#" className="line-through">
+                            </button>
+                            <button className="text-left line-through">
                                 English
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div className="fixed w-full bottom-5">
                     <div className="grid grid-cols-2 items-center text-center text-xl underline">
-                        <a>Tietoja</a>
-                        <a>Legal</a>
+                        <button>Tietoja</button>
+                        <button>Legal</button>
                     </div>
                 </div>
             </div>
