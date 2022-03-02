@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import LoadingSpinner from '../../../uiElements/spinner';
+import StopSelectionForm from './stopSelectionForm';
 
 const StopSelection = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const StopSelection = () => {
                 <h1 className="text-2xl font-medium">
                     Valitse pysäkit näytöllesi
                 </h1>
+                <StopSelectionForm />
             </div>
             <div className="flex flex-col justify-center items-center p-2">
                 <h1 className="text-2xl font-medium p-4">Luo näyttö</h1>
