@@ -25,7 +25,7 @@ const ScreenForm = () => {
 
         if (!(await checkIfScreenExists(uuid))) {
             return setTimeout(() => {
-                toast.error('Näyttöä ei löytynyt!');
+                toast.error('Pysäkkinäyttöä ei löytynyt!');
                 setLoading(false);
             }, 1000);
         }

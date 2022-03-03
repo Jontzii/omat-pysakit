@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import SlidingMenu from '../menu';
 
 const AppHeader = () => {
     const [menuOpen, setMenu] = useState(false);
+    const navigate = useNavigate();
+
+    const onClick = (e: any) => {
+        e.preventDefault();
+        navigate('/');
+    };
 
     return (
         <nav className="bg-nysse-blue-light border-solid border-b-2 border-clear-white">
             <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 text-clear-white">
                 <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
                     <span className="hidden sm:block" />
-                    <div className="text-4xl md:text-5xl lg:text-6xl font-medium">
+                    <button
+                        onClick={onClick}
+                        className="text-4xl md:text-5xl lg:text-6xl font-medium"
+                    >
                         Omat Pysäkit
-                    </div>
+                    </button>
 
                     <button
                         className="

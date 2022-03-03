@@ -6,6 +6,8 @@ import ScreenSelectionInformation from './screenSelectionInformation';
 import ScreenSelection from './screenSelection';
 
 const LandingScreen = () => {
+    document.title = 'Omat Pysäkit';
+
     return (
         <div className="bg-nysse-blue-light h-screen w-screen">
             <AppHeader />
