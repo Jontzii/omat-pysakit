@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LoadingSpinner from '../../../../uiElements/loadingSpinner';
+
 import StopData from '../../../../../types/stopData';
 import StopSelectionDropdown from '../stopSelectionDropdown';
 
@@ -11,10 +11,9 @@ interface StopSelectionFormProps {
 const StopSelectionForm = (props: StopSelectionFormProps) => {
     const { stops, addSelection } = props;
     const [stopId, setStopId] = useState('');
-    const [results, setResults] = useState(stops);
+    const [results, setResults] = useState<StopData[] | null>(null);
 
     const isLoading = !stops || stops.length === 0;
-    const showDropdown = stopId.length > 2;
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -23,14 +22,17 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
 
     const onChange = (e: any) => {
         e.preventDefault();
-        setStopId(e.target.value);
 
-        const input = e.target.value.toUpperCase();
+        if (e.target.value.length < 1) {
+            setResults(null);
+            return setStopId(e.target.value);
+        }
 
         if (!stops) {
             return setStopId(e.target.value);
         }
 
+        const input = e.target.value.toUpperCase();
         const filtered = stops?.filter((val) => {
             return (
                 val.name.toUpperCase().indexOf(input) > -1 ||
@@ -64,7 +66,10 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
                     onChange={onChange}
                 />
             </form>
-            <StopSelectionDropdown results={results} />
+            <StopSelectionDropdown
+                results={results}
+                noInput={stopId.length === 0}
+            />
         </>
     );
 };

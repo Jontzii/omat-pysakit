@@ -8,7 +8,7 @@ const CreateScreen = () => {
     document.title = 'Omat Pysäkit - Luo näyttö';
 
     return (
-        <div className="bg-nysse-blue-light h-screen w-screen">
+        <div className="bg-nysse-blue-light min-h-screen w-screen">
             <AppHeader />
             <main className="hidden md:flex flex-row w-screen max-h-screen text-clear-white my-5">
                 <div className="w-7/12">
@@ -18,9 +18,13 @@ const CreateScreen = () => {
                     <StopSelection />
                 </div>
             </main>
-            <main className="grid md:hidden grid-rows-2 w-screen max-h-screen text-clear-white my-5">
-                <StopSelectionInformation />
-                <StopSelection />
+            <main className="flex md:hidden flex-col w-screen max-h-screen text-clear-white my-5">
+                <div className="p-4">
+                    <StopSelectionInformation />
+                </div>
+                <div className="p-4">
+                    <StopSelection />
+                </div>
             </main>
         </div>
     );

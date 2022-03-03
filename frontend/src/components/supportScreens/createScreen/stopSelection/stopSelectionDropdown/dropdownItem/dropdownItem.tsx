@@ -9,7 +9,10 @@ const DropdownItem = (props: DropdownItemProps) => {
     const { name, code } = props;
 
     return (
-        <div className="flex justify-center px-4 py-1 w-full">
+        <div
+            className="flex justify-center px-4 py-1 w-full"
+            key={`${name}:${code}`}
+        >
             <button
                 className="
                     w-full px-3 py-1.5 text-black
@@ -26,7 +29,7 @@ const DropdownItem = (props: DropdownItemProps) => {
                     </div>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 block m-auto items-end"
+                        className="h-6 w-6 block m-auto mr-0"
                         fill=""
                         viewBox="0 0 24 24"
                         stroke="currentColor"
