@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ScreenForm from './screenForm';
-import LoadingSpinner from '../../../uiElements/spinner';
+import LoadingSpinner from '../../../uiElements/loadingSpinner';
 
 const ScreenSelection = () => {
     const navigate = useNavigate();
