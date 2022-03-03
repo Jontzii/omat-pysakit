@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { getStops } from '../../../../../services/stopsService';
 
 const StopSelectionForm = () => {
-    const [stops, setStops] = useState([]);
-    const [selected, setSelected] = useState([]);
+    const [stops, setStops] = useState(null);
     const [stopId, setStopId] = useState('');
 
     const handleSubmit = (e: any) => {
         console.log('Added stop to list');
     };
+
+    useEffect(() => {
+        getStops().then((data) => setStops(data));
+    }, []);
 
     return (
         <form
@@ -17,6 +22,7 @@ const StopSelectionForm = () => {
             <input
                 type="text"
                 placeholder="Pysäkki"
+                disabled={!stops}
                 className="
                     w-6/12 px-3 py-1.5 text-black
                     border border-solid border-nysse-light
@@ -27,6 +33,7 @@ const StopSelectionForm = () => {
             />
             <button
                 type="submit"
+                disabled={!stops}
                 className="
                     bg-nysse-blue-dark inline-block px-6 py-2.5 rounded shadow-md
                     hover:bg-nysse-light hover:text-nysse-blue-dark
