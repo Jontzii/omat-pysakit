@@ -1,61 +1,71 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import LoadingSpinner from '../../../../uiElements/loadingSpinner';
+import StopData from '../../../../../types/stopData';
+import StopSelectionDropdown from '../stopSelectionDropdown';
 
-import { getStops } from '../../../../../services/stopsService';
+interface StopSelectionFormProps {
+    stops: StopData[] | null;
+    addSelection: Function;
+}
 
-const StopSelectionForm = () => {
-    const [stops, setStops] = useState(null);
+const StopSelectionForm = (props: StopSelectionFormProps) => {
+    const { stops, addSelection } = props;
     const [stopId, setStopId] = useState('');
+    const [results, setResults] = useState(stops);
+
+    const isLoading = !stops || stops.length === 0;
+    const showDropdown = stopId.length > 2;
 
     const handleSubmit = (e: any) => {
-        console.log('Added stop to list');
+        e.preventDefault();
+        addSelection(stopId);
     };
 
-    useEffect(() => {
-        getStops().then((data) => setStops(data));
-    }, []);
+    const onChange = (e: any) => {
+        e.preventDefault();
+        setStopId(e.target.value);
+
+        const input = e.target.value.toUpperCase();
+
+        if (!stops) {
+            return setStopId(e.target.value);
+        }
+
+        const filtered = stops?.filter((val) => {
+            return (
+                val.name.toUpperCase().indexOf(input) > -1 ||
+                val.code.toUpperCase().indexOf(input) > -1
+            );
+        });
+
+        setResults(filtered);
+        setStopId(e.target.value);
+    };
 
     return (
-        <form
-            className="flex justify-center p-4 w-full"
-            onSubmit={handleSubmit}
-        >
-            <input
-                type="text"
-                placeholder="Pysäkki"
-                disabled={!stops}
-                className="
-                    w-6/12 px-3 py-1.5 text-black
-                    border border-solid border-nysse-light
-                    rounded transition ease-in-out m-0
-                    focus:outline-none"
-                value={stopId}
-                onChange={(e) => setStopId(e.target.value)}
-            />
-            <button
-                type="submit"
-                disabled={!stops}
-                className="
-                    bg-nysse-blue-dark inline-block px-6 py-2.5 rounded shadow-md
-                    hover:bg-nysse-light hover:text-nysse-blue-dark
-                    disabled:bg-nysse-light disabled:text-nysse-blue-dark
-                    transition duration-150 ease-in-out items-center"
+        <>
+            <form
+                className="flex justify-center p-4 pb-0 w-full"
+                onSubmit={handleSubmit}
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                </svg>
-            </button>
-        </form>
+                <input
+                    type="text"
+                    placeholder={
+                        (isLoading && 'Ladataan pysäkkejä...') ||
+                        'Pysäkin nimi tai numero'
+                    }
+                    disabled={isLoading}
+                    className="
+                        w-full px-3 py-1.5 text-black
+                        border border-solid border-nysse-light
+                        rounded-t transition ease-in-out m-0
+                        focus:outline-none"
+                    value={stopId}
+                    onChange={onChange}
+                />
+            </form>
+            <StopSelectionDropdown results={results} />
+        </>
     );
 };
 

@@ -44,7 +44,7 @@ const ScreenForm = () => {
                 className="
                     w-6/12 px-3 py-1.5 text-black
                     border border-solid border-nysse-light
-                    rounded transition ease-in-out m-0
+                    rounded rounded-r-none transition ease-in-out m-0
                     focus:outline-none"
                 value={uuid}
                 onChange={(e) => setUuid(e.target.value)}
@@ -53,8 +53,8 @@ const ScreenForm = () => {
                 type="submit"
                 disabled={isLoading}
                 className="
-                    bg-nysse-blue-dark inline-block px-6 py-2.5 rounded shadow-md
-                    hover:bg-nysse-light hover:text-nysse-blue-dark
+                    bg-nysse-blue-dark inline-block px-6 py-2.5 rounded 
+                    rounded-l-none shadow-md hover:bg-nysse-light hover:text-nysse-blue-dark
                     disabled:bg-nysse-light disabled:text-nysse-blue-dark
                     transition duration-150 ease-in-out items-center"
             >
