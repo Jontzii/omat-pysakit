@@ -30,7 +30,18 @@ describe('fetchStopsController', () => {
                 locals: {}
             };
 
-            mockedGetStops.mockResolvedValueOnce(['test:3001', 'test:3002']);
+            mockedGetStops.mockResolvedValueOnce([
+                {
+                    gtfsId: 'test:3001',
+                    name: 'test1',
+                    code: '3001'
+                },
+                {
+                    gtfsId: 'test:3002',
+                    name: 'test2',
+                    code: '3002'
+                }
+            ]);
 
             await fetchStops()(
                 mockRequest as Request,
@@ -39,8 +50,16 @@ describe('fetchStopsController', () => {
             );
 
             expect(mockResponse.locals?.stops).toEqual([
-                'test:3001',
-                'test:3002'
+                {
+                    gtfsId: 'test:3001',
+                    name: 'test1',
+                    code: '3001'
+                },
+                {
+                    gtfsId: 'test:3002',
+                    name: 'test2',
+                    code: '3002'
+                }
             ]);
             expect(mockNext).toBeCalledTimes(1);
         });

@@ -17,11 +17,13 @@ describe('fetchStopsUtils', () => {
         const stopObjects: stopObject[] = [
             {
                 gtfsId: 'test:3001',
-                name: 'first'
+                name: 'first',
+                code: '3001'
             },
             {
                 gtfsId: 'test:3002',
-                name: 'second'
+                name: 'second',
+                code: '3002'
             }
         ];
 

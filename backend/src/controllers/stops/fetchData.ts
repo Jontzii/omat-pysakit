@@ -18,7 +18,7 @@ const fetchData = async (): Promise<stopObject[]> => {
                 Accept: 'application/json'
             },
             data: {
-                query: `{ stops(feeds: ["${DIGITRANSIT_AREA}"]) { gtfsId, name } }`
+                query: `{ stops(feeds: ["${DIGITRANSIT_AREA}"]) { gtfsId, name, code } }`
             }
         });
 
