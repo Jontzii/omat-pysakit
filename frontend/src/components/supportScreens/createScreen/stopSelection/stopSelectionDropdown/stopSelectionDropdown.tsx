@@ -16,7 +16,7 @@ const StopSelectionDropdown = (props: DropdownProps) => {
         const newItems: JSX.Element[] = [];
 
         if (results) {
-            for (let i = 0; i < Math.min(results.length, 3); i += 1) {
+            for (let i = 0; i < Math.min(results.length, 6); i += 1) {
                 const stop = results[i];
                 newItems.push(
                     DropdownItem({ stop: stop, onClick: handleSelection })
@@ -28,12 +28,15 @@ const StopSelectionDropdown = (props: DropdownProps) => {
     }, [results, handleSelection]);
 
     return (
-        <div className="w-full px-4 bg-nysse-blue-light">
+        <div className="w-full px-4 bg-nysse-blue-light relative">
             <div
-                id="container"
+                id="dropdown-container"
                 className="
-                    w-full flex flex-col justify-center items-center
-                    py-2 bg-nysse-blue-dark rounded-b text-xl font-light"
+                    flex flex-col justify-center items-center
+                    py-2 bg-nysse-blue-dark rounded-b text-xl font-light
+                    border border-solid border-t-0 border-clear-white
+                    absolute top-0 left-4 right-4
+                "
             >
                 {noInput && 'Kirjoita saadaksesi ehdotuksia'}
                 {items.length > 0 && items}

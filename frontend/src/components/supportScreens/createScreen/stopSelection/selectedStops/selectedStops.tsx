@@ -26,7 +26,7 @@ const SelectedStops = (props: SelectedStopsProps) => {
     }, [selectedStops, handleDelete]);
 
     return (
-        <div className="w-full px-4 bg-nysse-blue-light">
+        <div className="w-full px-4 pt-10 bg-nysse-blue-light">
             <h1 className="text-2xl font-medium text-center p-4">
                 Valitut pysäkit
             </h1>
@@ -34,7 +34,9 @@ const SelectedStops = (props: SelectedStopsProps) => {
                 id="container-selected"
                 className="
                     w-full flex flex-col justify-center items-center
-                    py-2 bg-nysse-blue-dark rounded text-xl font-light"
+                    py-2 bg-nysse-blue-dark rounded text-xl font-light
+                    border border-solid border-clear-white
+                "
             >
                 {items.length > 0 && items}
                 {items.length === 0 && 'Jokin meni pieleen!'}
