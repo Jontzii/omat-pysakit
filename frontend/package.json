@@ -2,6 +2,7 @@
     "name": "frontend",
     "version": "0.1.0",
     "private": true,
+    "proxy": "https://omatpysakit.jontzi.com",
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.2",
         "@testing-library/react": "^12.1.2",
@@ -14,23 +15,30 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-router": "^6.2.1",
+        "react-router-dom": "^6.2.1",
         "react-scripts": "5.0.0",
+        "react-toastify": "^8.2.0",
         "typescript": "^4.5.5",
         "web-vitals": "^2.1.4"
     },
     "devDependencies": {
-        "eslint-config-prettier": "^8.3.0"
+        "autoprefixer": "^10.4.2",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "^7.29.2",
+        "postcss": "^8.4.6",
+        "tailwindcss": "^3.0.23"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "build:ci": "CI=true npm run build",
         "test": "react-scripts test",
-        "test:ci": "CI=true npm test",
+        "test:ci": "CI=true npm test -- --coverage",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
+            "plugin:react/recommended",
             "react-app",
             "react-app/jest",
             "prettier"
@@ -46,6 +54,11 @@
             "last 1 chrome version",
             "last 1 firefox version",
             "last 1 safari version"
+        ]
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.tsx"
         ]
     }
 }
