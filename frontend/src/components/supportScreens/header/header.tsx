@@ -17,6 +17,7 @@ const AppHeader = () => {
                 <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
                     <span className="hidden sm:block" />
                     <button
+                        data-testid="logo-button"
                         onClick={onClick}
                         className="text-4xl md:text-5xl lg:text-6xl font-medium"
                     >
@@ -24,6 +25,7 @@ const AppHeader = () => {
                     </button>
 
                     <button
+                        data-testid="menu-button"
                         className="
                             p-2 rounded-md hover:bg-nysse-blue-dark
                             focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white
