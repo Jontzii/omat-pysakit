@@ -1,37 +1,47 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import ScreenHeader from './header/header';
 import PageSpinner from '../uiElements/pageSpinner';
+import NotFound from './notFound';
 
+import ScreenSettings from '../../types/screenSettings';
 import { getScreen } from '../../services/screenService';
+import StopList from './stopList/stopList';
 
 const StopScreen = () => {
-    let [searchParams, setSearchParams] = useSearchParams();
+    const searchParams = useSearchParams()[0];
     const [stops, setStops] = useState<string[] | null>(null);
-    const [uuid, setUuid] = useState(searchParams.get('id'));
     const [isLoading, setLoading] = useState(true);
     const [notFound, setNotFound] = useState(false);
+    const uuid = searchParams.get('id');
 
-    const fetchScreen = async () => {
-        if (!uuid) return null;
-
+    const fetchScreen = useCallback(async () => {
         try {
-            const data = await getScreen(uuid);
+            if (!uuid) throw new Error();
+
+            const data: ScreenSettings = await getScreen(uuid);
+
+            setStops(data.stops);
             setLoading(false);
         } catch {
-            setLoading(false);
-            setNotFound(true);
+            setTimeout(() => {
+                setLoading(false);
+                setNotFound(true);
+            }, 1000);
         }
-    };
+    }, [uuid]);
 
     useEffect(() => {
         fetchScreen();
-    }, []);
+    }, [fetchScreen]);
 
     return (
         <div className="w-screen h-screen bg-nysse-blue-light">
-            <PageSpinner />
+            {isLoading && <PageSpinner />}
+            {!isLoading && notFound && <NotFound />}
+            {!isLoading && !notFound && <StopList />}
         </div>
     );
 };
