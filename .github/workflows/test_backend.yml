@@ -5,6 +5,7 @@ on:
             - 'main'
         paths:
             - 'backend/**'
+            - 'frontend/**'
             - '.github/workflows/test_backend.yml'
 
 jobs:

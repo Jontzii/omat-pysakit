@@ -4,6 +4,7 @@ on:
         branches-ignore:
             - 'main'
         paths:
+            - 'backend/**'
             - 'frontend/**'
             - '.github/workflows/test_frontend.yml'
 
