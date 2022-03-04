@@ -20,7 +20,12 @@ const CreateScreen = () => {
     }, []);
 
     return (
-        <div className="bg-nysse-blue-light min-h-screen w-screen">
+        <div
+            className="
+                bg-nysse-blue-light min-h-screen max-w-screen
+                overflow-x-hidden overflow-y-auto
+                "
+        >
             <AppHeader />
             <main className="hidden md:flex flex-row w-screen max-h-screen text-clear-white my-5">
                 <div className="w-7/12">
