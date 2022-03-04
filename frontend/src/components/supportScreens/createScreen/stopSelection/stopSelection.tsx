@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import StopSelectionForm from './stopSelectionForm';
 import SelectedStops from './selectedStops';
