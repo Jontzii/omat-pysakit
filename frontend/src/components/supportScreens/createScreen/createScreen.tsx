@@ -31,6 +31,7 @@ const CreateScreen = () => {
                         stops={stops}
                         selectedStops={selectedStops}
                         setSelected={setSelected}
+                        setStops={setStops}
                     />
                 </div>
             </main>
@@ -43,6 +44,7 @@ const CreateScreen = () => {
                         stops={stops}
                         selectedStops={selectedStops}
                         setSelected={setSelected}
+                        setStops={setStops}
                     />
                 </div>
             </main>

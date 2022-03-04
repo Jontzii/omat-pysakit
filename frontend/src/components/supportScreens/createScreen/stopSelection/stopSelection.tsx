@@ -8,10 +8,11 @@ interface StopSelectionProps {
     stops: StopData[] | null;
     selectedStops: StopData[] | null;
     setSelected: Function;
+    setStops: Function;
 }
 
 const StopSelection = (props: StopSelectionProps) => {
-    const { stops, selectedStops, setSelected } = props;
+    const { stops, selectedStops, setSelected, setStops } = props;
 
     /**
      * Add given stop to selection
@@ -21,6 +22,13 @@ const StopSelection = (props: StopSelectionProps) => {
         setSelected((prevSelected: StopData[] | null) => {
             if (prevSelected) return [...prevSelected, stop];
             return [stop];
+        });
+        setStops((prevStops: StopData[] | null) => {
+            if (prevStops)
+                return prevStops.filter(
+                    (val: StopData) => val.gtfsId !== stop.gtfsId
+                );
+            return [];
         });
     };
 
@@ -39,6 +47,10 @@ const StopSelection = (props: StopSelectionProps) => {
             }
 
             return null;
+        });
+        setStops((prevStops: StopData[] | null) => {
+            if (prevStops) return [...prevStops, stop];
+            return [stop];
         });
     };
 

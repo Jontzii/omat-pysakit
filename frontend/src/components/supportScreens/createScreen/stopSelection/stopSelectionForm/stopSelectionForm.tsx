@@ -15,9 +15,12 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
 
     const isLoading = !stops || stops.length === 0;
 
+    /**
+     * Change dropdown results based on input
+     * @param e
+     * @returns
+     */
     const onChange = (e: any) => {
-        e.preventDefault();
-
         if (e.target.value.length < 1) {
             setResults(null);
             return setStopId(e.target.value);
@@ -37,6 +40,12 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
 
         setResults(filtered);
         setStopId(e.target.value);
+    };
+
+    const handleSelectionWithClear = (stop: StopData) => {
+        setStopId('');
+        setResults(null);
+        handleSelection(stop);
     };
 
     return (
@@ -64,7 +73,7 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
             <StopSelectionDropdown
                 results={results}
                 noInput={stopId.length === 0}
-                handleSelection={handleSelection}
+                handleSelection={handleSelectionWithClear}
             />
         </>
     );
