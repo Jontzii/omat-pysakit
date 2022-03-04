@@ -31,7 +31,7 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
         }
 
         const input = e.target.value.toUpperCase();
-        const filtered = stops?.filter((val) => {
+        const filtered = stops.filter((val) => {
             return (
                 val.name.toUpperCase().indexOf(input) > -1 ||
                 val.code.toUpperCase().indexOf(input) > -1
