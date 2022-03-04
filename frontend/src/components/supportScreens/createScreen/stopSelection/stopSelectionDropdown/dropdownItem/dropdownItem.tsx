@@ -1,17 +1,18 @@
 import React from 'react';
+import StopData from '../../../../../../types/stopData';
 
 interface DropdownItemProps {
-    name: string;
-    code: string;
+    stop: StopData;
+    onClick: any;
 }
 
 const DropdownItem = (props: DropdownItemProps) => {
-    const { name, code } = props;
+    const { stop, onClick } = props;
 
     return (
         <div
             className="flex justify-center px-4 py-1 w-full"
-            key={`${name}:${code}`}
+            key={`dropdown-${stop.name}:${stop.code}`}
         >
             <button
                 className="
@@ -21,11 +22,12 @@ const DropdownItem = (props: DropdownItemProps) => {
                     focus:outline-none bg-clear-white
                     hover:scale-105 duration-300
                 "
+                onClick={() => onClick(stop)}
             >
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-2 text-left">
                     <div>
-                        <p className="text-xl">{name}</p>
-                        <p className=" text-xs">{code}</p>
+                        <p className="text-xl">{stop.name}</p>
+                        <p className="text-xs">{stop.code}</p>
                     </div>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

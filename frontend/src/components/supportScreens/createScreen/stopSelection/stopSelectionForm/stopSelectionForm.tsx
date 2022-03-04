@@ -5,20 +5,15 @@ import StopSelectionDropdown from '../stopSelectionDropdown';
 
 interface StopSelectionFormProps {
     stops: StopData[] | null;
-    addSelection: Function;
+    handleSelection: Function;
 }
 
 const StopSelectionForm = (props: StopSelectionFormProps) => {
-    const { stops, addSelection } = props;
+    const { stops, handleSelection } = props;
     const [stopId, setStopId] = useState('');
     const [results, setResults] = useState<StopData[] | null>(null);
 
     const isLoading = !stops || stops.length === 0;
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        addSelection(stopId);
-    };
 
     const onChange = (e: any) => {
         e.preventDefault();
@@ -48,7 +43,7 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
         <>
             <form
                 className="flex justify-center p-4 pb-0 w-full"
-                onSubmit={handleSubmit}
+                onSubmit={(e) => e.preventDefault()}
             >
                 <input
                     type="text"
@@ -69,6 +64,7 @@ const StopSelectionForm = (props: StopSelectionFormProps) => {
             <StopSelectionDropdown
                 results={results}
                 noInput={stopId.length === 0}
+                handleSelection={handleSelection}
             />
         </>
     );

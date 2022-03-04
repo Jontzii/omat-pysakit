@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DropdownItem from './dropdownItem';
 import StopData from '../../../../../types/stopData';
 
 interface DropdownProps {
     results: StopData[] | null;
     noInput: boolean;
+    handleSelection: Function;
 }
 
 const StopSelectionDropdown = (props: DropdownProps) => {
-    const { results, noInput } = props;
+    const { results, noInput, handleSelection } = props;
+    const [items, setItems] = useState<JSX.Element[]>([]);
 
-    const items: any[] = [];
+    useEffect(() => {
+        const newItems: JSX.Element[] = [];
 
-    if (results) {
-        for (let i = 0; i < Math.min(results.length, 3); i += 1) {
-            const stop = results[i];
-            items.push(DropdownItem({ name: stop.name, code: stop.code }));
+        if (results) {
+            for (let i = 0; i < Math.min(results.length, 3); i += 1) {
+                const stop = results[i];
+                newItems.push(
+                    DropdownItem({ stop: stop, onClick: handleSelection })
+                );
+            }
         }
-    }
+
+        setItems(newItems);
+    }, [results, handleSelection]);
 
     return (
         <div className="w-full px-4 bg-nysse-blue-light">

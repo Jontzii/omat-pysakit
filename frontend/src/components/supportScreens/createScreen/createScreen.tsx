@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppHeader from '../header';
 
 import StopSelectionInformation from './stopSelectionInformation';
 import StopSelection from './stopSelection';
 
+import StopData from '../../../types/stopData';
+import { getStops } from '../../../services/stopsService';
+
 const CreateScreen = () => {
     document.title = 'Omat Pysäkit - Luo näyttö';
+
+    const [stops, setStops] = useState<StopData[] | null>(null);
+    const [selectedStops, setSelected] = useState<StopData[] | null>(null);
+
+    useEffect(() => {
+        getStops()
+            .then((data) => setStops(data))
+            .catch(() => console.error('Could not fetch stops'));
+    }, []);
 
     return (
         <div className="bg-nysse-blue-light min-h-screen w-screen">
@@ -15,7 +27,11 @@ const CreateScreen = () => {
                     <StopSelectionInformation />
                 </div>
                 <div className="w-5/12">
-                    <StopSelection />
+                    <StopSelection
+                        stops={stops}
+                        selectedStops={selectedStops}
+                        setSelected={setSelected}
+                    />
                 </div>
             </main>
             <main className="flex md:hidden flex-col w-screen max-h-screen text-clear-white my-5">
@@ -23,7 +39,11 @@ const CreateScreen = () => {
                     <StopSelectionInformation />
                 </div>
                 <div className="p-4">
-                    <StopSelection />
+                    <StopSelection
+                        stops={stops}
+                        selectedStops={selectedStops}
+                        setSelected={setSelected}
+                    />
                 </div>
             </main>
         </div>
