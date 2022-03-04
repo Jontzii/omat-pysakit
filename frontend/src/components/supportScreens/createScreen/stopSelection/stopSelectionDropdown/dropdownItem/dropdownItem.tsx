@@ -24,8 +24,8 @@ const DropdownItem = (props: DropdownItemProps) => {
                 "
                 onClick={() => onClick(stop)}
             >
-                <div className="grid grid-cols-2 text-left">
-                    <div>
+                <div className="flex flex-row text-left">
+                    <div className="w-10/12">
                         <p className="text-xl">{stop.name}</p>
                         <p className="text-xs">{stop.code}</p>
                     </div>

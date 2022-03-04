@@ -34,7 +34,7 @@ const StopSelectionDropdown = (props: DropdownProps) => {
                 className="
                     flex flex-col justify-center items-center
                     py-2 bg-nysse-blue-dark rounded-b text-xl font-light
-                    border border-solid border-t-0 border-clear-white
+                    border-2 border-solid border-t-0 border-clear-white
                     absolute top-0 left-4 right-4
                 "
             >

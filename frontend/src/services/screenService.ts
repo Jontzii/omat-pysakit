@@ -1,5 +1,5 @@
 import axios from './axiosConfig';
-import ScreenSettings from '../types/screenSettings';
+import ScreenPost from '../types/screenPost';
 
 /**
  * Returns true if screen exists
@@ -33,7 +33,7 @@ export const getScreen = async (id: string) => {
  * @param screen Screen settings
  * @returns
  */
-export const postScreen = async (screen: ScreenSettings) => {
+export const postScreen = async (screen: ScreenPost) => {
     const result = await axios.post('screen', screen);
     return result.data;
 };

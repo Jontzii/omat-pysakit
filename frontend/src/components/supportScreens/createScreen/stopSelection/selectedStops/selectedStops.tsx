@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import StopData from '../../../../../types/stopData';
 
 import SelectedStopItem from './selectedStopItem';
+import SelectedStopButton from './selectedStopButton';
 
 interface SelectedStopsProps {
     selectedStops: StopData[];
     handleDelete: Function;
+    handlePost: Function;
 }
 
 const SelectedStops = (props: SelectedStopsProps) => {
-    const { selectedStops, handleDelete } = props;
+    const { selectedStops, handleDelete, handlePost } = props;
     const [items, setItems] = useState<JSX.Element[]>([]);
 
     useEffect(() => {
@@ -39,6 +41,9 @@ const SelectedStops = (props: SelectedStopsProps) => {
                 "
             >
                 {items.length > 0 && items}
+                {items.length > 0 && (
+                    <SelectedStopButton handlepost={handlePost} />
+                )}
                 {items.length === 0 && 'Jokin meni pieleen!'}
             </div>
         </div>

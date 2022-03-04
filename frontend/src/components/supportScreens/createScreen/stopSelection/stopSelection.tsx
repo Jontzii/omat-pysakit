@@ -9,10 +9,11 @@ interface StopSelectionProps {
     selectedStops: StopData[] | null;
     setSelected: Function;
     setStops: Function;
+    handlePost: Function;
 }
 
 const StopSelection = (props: StopSelectionProps) => {
-    const { stops, selectedStops, setSelected, setStops } = props;
+    const { stops, selectedStops, setSelected, setStops, handlePost } = props;
 
     /**
      * Add given stop to selection
@@ -65,6 +66,7 @@ const StopSelection = (props: StopSelectionProps) => {
                 <SelectedStops
                     selectedStops={selectedStops}
                     handleDelete={removeSelected}
+                    handlePost={handlePost}
                 />
             )}
         </div>
