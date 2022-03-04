@@ -67,6 +67,10 @@ jobs:
                   cache: npm
             - run: npm ci
             - run: npm run test:ci
+            - uses: codecov/codecov-action@v2
+              with:
+                  flags: unittests,frontend
+                  fail_ci_if_error: true
 
     frontend-push-gcp:
         name: Build and push frontend to GAR

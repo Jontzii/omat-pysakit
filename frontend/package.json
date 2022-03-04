@@ -33,7 +33,7 @@
         "build": "react-scripts build",
         "build:ci": "CI=true npm run build",
         "test": "react-scripts test",
-        "test:ci": "CI=true npm test",
+        "test:ci": "CI=true npm test -- --coverage",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
@@ -54,6 +54,11 @@
             "last 1 chrome version",
             "last 1 firefox version",
             "last 1 safari version"
+        ]
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.ts"
         ]
     }
 }
