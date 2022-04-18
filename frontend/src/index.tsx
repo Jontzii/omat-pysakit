@@ -7,8 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Import components
-import LandingScreen from './components/supportScreens/landingScreen';
-import CreateScreen from './components/supportScreens/createScreen';
+import LandingScreen from './components/supportViews/landingScreen';
+import CreateScreen from './components/supportViews/createScreen';
 import StopScreen from './components/stopScreen';
 
 ReactDOM.render(
