@@ -50,18 +50,14 @@ const SlidingMenu = ({ menuVisible, setMenuOpen }: MenuProps) => {
                         <div className="grid grid-rows-3 items-stretch text-left text-xl underline py-4">
                             <button className="text-left">Suomi</button>
                             <button className="text-left line-through">
-                                Svenska
-                            </button>
-                            <button className="text-left line-through">
                                 English
                             </button>
                         </div>
                     </div>
                 </div>
                 <div className="fixed w-full bottom-5">
-                    <div className="grid grid-cols-2 items-center text-center text-xl underline">
+                    <div className="grid grid-cols-1 items-center text-center text-xl underline">
                         <button>Tietoja</button>
-                        <button>Legal</button>
                     </div>
                 </div>
             </div>
