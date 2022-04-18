@@ -11,6 +11,8 @@ import { getScreen } from '../../services/screenService';
 import StopList from './stopList/stopList';
 
 const StopScreen = () => {
+    document.title = 'Omat Pysäkit';
+
     const searchParams = useSearchParams()[0];
     const [stops, setStops] = useState<string[] | null>(null);
     const [isLoading, setLoading] = useState(true);
@@ -37,11 +39,24 @@ const StopScreen = () => {
         fetchScreen();
     }, [fetchScreen]);
 
+    if (isLoading) {
+        return (
+            <div className="w-screen h-screen bg-nysse-blue-light">
+                <PageSpinner />
+            </div>
+        );
+    } else if (!isLoading && (notFound || !stops)) {
+        return (
+            <div className="w-screen h-screen bg-nysse-blue-light">
+                <NotFound />
+            </div>
+        );
+    }
+
     return (
         <div className="w-screen h-screen bg-nysse-blue-light">
-            {isLoading && <PageSpinner />}
-            {!isLoading && notFound && <NotFound />}
-            {!isLoading && !notFound && <StopList />}
+            <ScreenHeader stops={stops || []} />
+            <StopList stops={stops} />
         </div>
     );
 };

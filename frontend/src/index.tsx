@@ -12,27 +12,36 @@ import CreateScreen from './components/supportViews/createScreen';
 import StopScreen from './components/stopScreen';
 import NotFound from './components/supportViews/notFound';
 
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+const apolloClient = new ApolloClient({
+    uri: process.env.REACT_APP_ROUTING_API,
+    cache: new InMemoryCache()
+});
+
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<LandingScreen />} />
-                <Route path="/createScreen" element={<CreateScreen />} />
-                <Route path="/screen" element={<StopScreen />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-            <ToastContainer
-                position="bottom-left"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-        </BrowserRouter>
+        <ApolloProvider client={apolloClient}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<LandingScreen />} />
+                    <Route path="/createScreen" element={<CreateScreen />} />
+                    <Route path="/screen" element={<StopScreen />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+                <ToastContainer
+                    position="bottom-left"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+            </BrowserRouter>
+        </ApolloProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );
