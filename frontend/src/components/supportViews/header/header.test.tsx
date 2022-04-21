@@ -1,18 +1,34 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import React, { useState as useStateMock } from 'react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom';
+import { useNavigate as useNavigateMock } from 'react-router';
 
 import AppHeader from './header';
 
 jest.mock('react-router');
 
+jest.mock('react', () => ({
+    ...jest.requireActual('react'),
+    useState: jest.fn()
+}));
+
 let container: any = null;
 describe('AppHeader', () => {
+    const setShowModal = jest.fn();
+    const navigate = jest.fn();
+
     beforeEach(() => {
         // setup a DOM element as a render target
         container = document.createElement('div');
         document.body.appendChild(container);
+
+        (useStateMock as jest.Mock).mockImplementation((showModal: boolean) => [
+            showModal,
+            setShowModal
+        ]);
+
+        (useNavigateMock as jest.Mock).mockImplementation(() => navigate);
     });
 
     afterEach(() => {
@@ -29,7 +45,25 @@ describe('AppHeader', () => {
         await waitFor(() => expect(title).toHaveTextContent('Omat Pysäkit'));
     });
 
-    test.todo('Should navigate user to "/" when logo button is clicked');
-    test.todo('Should render button that opens menu');
-    test.todo('Should change menuOpen state when menu button is clicked');
+    test('Should navigate user to "/" when logo button is clicked', async () => {
+        render(<AppHeader />, container);
+        const title = await screen.findByTestId('logo-button');
+
+        fireEvent.click(title);
+        expect(navigate).toBeCalledWith('/');
+    });
+
+    test('Should render button that opens modal', async () => {
+        render(<AppHeader />, container);
+        const button = screen.queryByTestId('modal-button');
+        await waitFor(() => expect(button).toBeTruthy());
+    });
+
+    test('Should change showModal state when menu button is clicked', async () => {
+        render(<AppHeader />, container);
+        const button = await screen.findByTestId('modal-button');
+
+        fireEvent.click(button);
+        expect(setShowModal).toBeCalledWith(true);
+    });
 });

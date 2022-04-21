@@ -28,7 +28,7 @@ const AppHeader = () => {
                     </button>
 
                     <button
-                        data-testid="menu-button"
+                        data-testid="modal-button"
                         className="
                             p-2 rounded-md hover:bg-nysse-blue-dark
                             focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white
