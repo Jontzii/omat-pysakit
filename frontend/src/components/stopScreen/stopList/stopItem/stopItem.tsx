@@ -1,6 +1,5 @@
 import React from 'react';
 import { StopWithSingleTimeData } from '../../../../types/StopWithTimeData';
-import _ from 'lodash';
 import { DateTime } from 'luxon';
 
 interface StopItemProps {
