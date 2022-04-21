@@ -18,8 +18,11 @@ const InfoModal = ({ showModal, setShowModal }: InfoModalProps) => {
         <div className="flex flex-col h-full">
             <div className="flex items-center justify-between">
                 <span className="hidden md:block" style={{ width: '48px' }} />
-                <h1 className="text-5xl">Tietoja</h1>
+                <h1 data-testid="modal-info" className="text-5xl">
+                    Tietoja
+                </h1>
                 <button
+                    data-testid="close-button"
                     className="p-2 rounded-md hover:bg-nysse-blue-light
                             focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white
                             transition duration-150 ease-in-out"
