@@ -26,7 +26,7 @@ const ScreenHeader = ({ stops }: HeaderProps) => {
             <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 text-clear-white">
                 <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
                     <span className="hidden sm:block" />
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium pl-2 sm:pl-0">
                         {stops[shownStop] || ''}
                     </h1>
                     <span className="hidden sm:block" />
