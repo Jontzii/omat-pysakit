@@ -1,39 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
-import _ from 'lodash';
 
 interface HeaderProps {
     stops: string[];
 }
 
-const ScreenHeader = (props: HeaderProps) => {
-    const { stops } = props;
-
-    const STOP_NAME_QUERY = gql`
-        {
-            stops(ids: ${JSON.stringify(stops)}) {
-                name
-            }
-        }
-    `;
-
-    const { loading, error, data } = useQuery(STOP_NAME_QUERY);
+const ScreenHeader = ({ stops }: HeaderProps) => {
     const [shownStop, setShownStop] = useState<number>(0);
-    const [stopNames, setStopNames] = useState<String[]>([]);
-
-    useEffect(() => {
-        if (data) {
-            setStopNames(_.map(data.stops, (stop) => stop.name));
-        }
-
-        return () => setStopNames([]);
-    }, [data]);
 
     useEffect(() => {
         let timer: NodeJS.Timer;
 
         timer = setTimeout(() => {
-            if (shownStop < stopNames.length - 1) {
+            if (shownStop < stops.length - 1) {
                 setShownStop(shownStop + 1);
             } else {
                 setShownStop(0);
@@ -41,7 +19,7 @@ const ScreenHeader = (props: HeaderProps) => {
         }, 2500);
 
         return () => clearInterval(timer);
-    }, [shownStop, stopNames.length]);
+    }, [shownStop, stops.length]);
 
     return (
         <nav className="bg-nysse-blue-light border-solid border-b-2 border-clear-white">
@@ -49,9 +27,7 @@ const ScreenHeader = (props: HeaderProps) => {
                 <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
                     <span className="hidden sm:block" />
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium">
-                        {loading && 'Lataa'}
-                        {error && 'Virhe'}
-                        {!loading && !error && (stopNames[shownStop] || '')}
+                        {stops[shownStop] || ''}
                     </h1>
                     <span className="hidden sm:block" />
                 </div>
