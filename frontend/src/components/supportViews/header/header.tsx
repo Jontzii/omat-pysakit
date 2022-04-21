@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import InfoModal from '../infoModal';
 
 const AppHeader = () => {
-    const [infoOpen, setInfoOpen] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
     const onClick = (e: any) => {
@@ -14,7 +15,10 @@ const AppHeader = () => {
         <nav className="bg-nysse-blue-light border-solid border-b-2 border-clear-white">
             <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 text-clear-white">
                 <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
-                    <span className="hidden sm:block" />
+                    <span
+                        className="hidden sm:block p-2"
+                        style={{ width: '48px' }}
+                    />
                     <button
                         data-testid="logo-button"
                         onClick={onClick}
@@ -30,11 +34,11 @@ const AppHeader = () => {
                             focus:outline-none focus:ring-2 focus:ring-inset focus:ring-clear-white
                             transition duration-150 ease-in-out
                         "
-                        onClick={() => setInfoOpen(true)}
+                        onClick={() => setShowModal(true)}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
+                            className="h-8 w-8"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -49,6 +53,7 @@ const AppHeader = () => {
                     </button>
                 </div>
             </div>
+            <InfoModal showModal={showModal} setShowModal={setShowModal} />
         </nav>
     );
 };
