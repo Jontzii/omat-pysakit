@@ -9,6 +9,7 @@ const PageSpinner = () => {
         >
             <svg
                 role="status"
+                data-testid="loading-spinner"
                 className="w-24 h-24 animate-spin"
                 viewBox="0 0 100 101"
                 fill="none"
@@ -23,7 +24,10 @@ const PageSpinner = () => {
                     fill="#ffffff"
                 />
             </svg>
-            <h1 className="text-xl font-medium text-clear-white py-4">
+            <h1
+                data-testid="loading-text"
+                className="text-xl font-medium text-clear-white py-4"
+            >
                 Ladataan...
             </h1>
         </div>
