@@ -50,7 +50,7 @@ describe('AppHeader', () => {
         const title = await screen.findByTestId('logo-button');
 
         fireEvent.click(title);
-        expect(navigate).toBeCalledWith('/');
+        await waitFor(() => expect(navigate).toBeCalledWith('/'));
     });
 
     test('Should render button that opens modal', async () => {

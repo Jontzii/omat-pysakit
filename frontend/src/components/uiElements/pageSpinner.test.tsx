@@ -6,7 +6,7 @@ import { unmountComponentAtNode } from 'react-dom';
 import PageSpinner from './pageSpinner';
 
 let container: any = null;
-describe('AppHeader', () => {
+describe('PageSpinner', () => {
     beforeEach(() => {
         // setup a DOM element as a render target
         container = document.createElement('div');

@@ -9,7 +9,7 @@ import NotFound from './notFound';
 jest.mock('react-router');
 
 let container: any = null;
-describe('AppHeader', () => {
+describe('NotFound', () => {
     const setShowModal = jest.fn();
     const navigate = jest.fn();
 
