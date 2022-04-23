@@ -20,7 +20,7 @@ jest.mock('../../../../uiElements/loadingSpinner', () => {
 });
 
 let container: any = null;
-describe('AppHeader', () => {
+describe('ScreenForm', () => {
     const setUuid = jest.fn();
     const setLoading = jest.fn();
     const navigate = jest.fn();

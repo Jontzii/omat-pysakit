@@ -6,7 +6,7 @@ import { unmountComponentAtNode } from 'react-dom';
 import ScreenSelectionInformation from './screenSelectionInformation';
 
 let container: any = null;
-describe('AppHeader', () => {
+describe('ScreenSelectionInformation', () => {
     beforeEach(() => {
         // setup a DOM element as a render target
         container = document.createElement('div');

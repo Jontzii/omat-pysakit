@@ -21,7 +21,7 @@ jest.mock('../../../uiElements/loadingSpinner', () => {
 });
 
 let container: any = null;
-describe('AppHeader', () => {
+describe('ScreenSelection', () => {
     const setLoading = jest.fn();
     const navigate = jest.fn();
 
