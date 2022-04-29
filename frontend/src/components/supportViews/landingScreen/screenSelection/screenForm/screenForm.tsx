@@ -40,6 +40,7 @@ const ScreenForm = () => {
         >
             <input
                 type="text"
+                data-testid="screenForm-input"
                 placeholder="Näytön ID"
                 className="
                     w-6/12 px-3 py-1.5 text-black
@@ -51,6 +52,7 @@ const ScreenForm = () => {
             />
             <button
                 type="submit"
+                data-testid="screenForm-button"
                 disabled={isLoading}
                 className="
                     bg-nysse-blue-dark inline-block px-6 py-2.5 rounded 

@@ -20,16 +20,23 @@ const ScreenSelection = () => {
     return (
         <div className="flex flex-col justify-center items-center">
             <div className="flex flex-col justify-center items-center p-2 w-full">
-                <h1 className="text-2xl font-medium">
+                <h1
+                    data-testid="screenForm-test"
+                    className="text-2xl font-medium"
+                >
                     Avaa olemassa oleva näyttö
                 </h1>
                 <ScreenForm />
             </div>
             <div className="flex flex-col justify-center items-center p-2">
-                <h1 className="text-2xl font-medium p-4">
+                <h1
+                    data-testid="createScreen-text"
+                    className="text-2xl font-medium p-4"
+                >
                     Luo uusi pysäkkinäyttö
                 </h1>
                 <button
+                    data-testid="createScreen-button"
                     className="
                         bg-nysse-blue-dark font-bold py-4 px-8 rounded-full
                         transition duration-150 ease-in-out
